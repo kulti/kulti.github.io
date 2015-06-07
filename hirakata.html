@@ -2,12 +2,12 @@
 <html>
 <body>
 
-<p id="results" >Осталось: 46</p>
+<p id="results" >Чтобы начать, нажмите кнопку 'Хирагана' или 'Катакана'</p>
 
 <form id="frm">
   <div id="quest" style="display:inline">? : </div><input id="answer" style="display:inline" type="text" name="fname" onkeypress="return on_key_press(event)" ><br>
-  <input id="btn" type="button" onclick="on_begin(hira)" value="Хирагана">
-  <input id="btn" type="button" onclick="on_begin(kata)" value="Катакана">
+  <input id="hira_btn" type="button" onclick="on_begin(hira)" value="Хирагана">
+  <input id="kata_btn" type="button" onclick="on_begin(kata)" value="Катакана">
 </form>
 
 <script>
@@ -54,7 +54,8 @@ function on_begin(d) {
 
   document.getElementById("quest").style.display = "inline";
   document.getElementById("answer").style.display = "inline";
-  document.getElementById("btn").style.display = "none";
+  document.getElementById("hira_btn").style.display = "none";
+  document.getElementById("kata_btn").style.display = "none";
   show_next_quest();
 }
 
@@ -104,7 +105,7 @@ function show_results() {
       times_str = times_str + "<br>" + dict.charAt(index[i]) + " : " + times[index[i]]/1000;
     }
   }
-  document.getElementById("results").innerHTML = "Oшибок: " + errors_num + errors_str + "<br>Время на правильные ответы: " + total_time/1000 + times_str;
+  document.getElementById("results").innerHTML = "<a href=\"javascript:history.go(0)\">Еще разок?</a><br>" + "Oшибок: " + errors_num + errors_str + "<br>Время на правильные ответы: " + total_time/1000 + times_str;
 }
 
 function sort_index_by_time() {
