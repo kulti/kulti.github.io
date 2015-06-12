@@ -60,13 +60,18 @@ function shuffle(array) {
 
 function on_begin() {
   var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo"];
+  var cookies = "hirakata=";
   for (var n in dicts) {
     d = dicts[n];
     if (document.getElementById(d).checked) {
       dict = dict.concat(window[d]);
       roma = roma.concat(window["roma_" + d]);
+      cookies = cookies + d + " ";
     }
   }
+  var d = new Date();
+  d.setDate(d.getDate() + 360);
+  document.cookie = cookies + "; expires=" + d.toUTCString();
   index = new Array;
   times = new Array;
   for (i = 0; i < dict.length; ++i) {
@@ -140,6 +145,21 @@ function sort_index_by_time() {
         index[i] = index[i + 1];
         index[i + 1] = t;
       }
+    }
+  }
+}
+
+window.onload = function() {
+  var matches = document.cookie.match(new RegExp("(?:^|; )hirakata=([^;]*)"));
+  if (!matches) {
+    return;
+  }
+
+  var dicts = matches[1].split(' ');
+  for (n in dicts) {
+    elem = document.getElementById(dicts[n]);
+    if (elem) {
+      elem.checked = true;
     }
   }
 }
