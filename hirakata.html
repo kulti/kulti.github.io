@@ -5,13 +5,13 @@
 <p id="results" >Выберите азбуку</p>
 
 <form id="frm_begin">
-  <input id="hira" type="checkbox">Хирагана (き,す)</br>
-  <input id="hira_zv" type="checkbox">Хирагана: звонкие и глухие (ぎ,ず)</br>
-  <input id="hira_yo" type="checkbox">Хирагана: йотированные (きゅ,しょ)</br>
-  <input id="kata" type="checkbox">Катакана (キ,ス)</br>
-  <input id="kata_zv" type="checkbox">Катакана: звонкие и глухие (ギ,ズ)</br>
-  <input id="kata_yo" type="checkbox">Катакана: йотированные (キュ,ショ)</br>
-  <input id="begin_btn" type="button" onclick="on_begin()" value="Начать">
+  <input id="hira" type="checkbox" onclick="on_dicts_chage()">Хирагана (き,す)</br>
+  <input id="hira_zv" type="checkbox" onclick="on_dicts_chage()">Хирагана: звонкие и глухие (ぎ,ず)</br>
+  <input id="hira_yo" type="checkbox" onclick="on_dicts_chage()">Хирагана: йотированные (きゅ,しょ)</br>
+  <input id="kata" type="checkbox" onclick="on_dicts_chage()">Катакана (キ,ス)</br>
+  <input id="kata_zv" type="checkbox" onclick="on_dicts_chage()">Катакана: звонкие и глухие (ギ,ズ)</br>
+  <input id="kata_yo" type="checkbox" onclick="on_dicts_chage()">Катакана: йотированные (キュ,ショ)</br>
+  <input id="begin_btn" type="button" disabled="disabled" onclick="on_begin()" value="Начать">
 </form>
 
 <form id="frm_quest" style="display:none">
@@ -58,8 +58,18 @@ function shuffle(array) {
   return array;
 }
 
+var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo"];
+function on_dicts_chage() {
+  for (var n in dicts) {
+    if (document.getElementById(dicts[n]).checked) {
+      document.getElementById("begin_btn").disabled = false;
+      return;
+    }
+  }
+  document.getElementById("begin_btn").disabled = true;
+}
+
 function on_begin() {
-  var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo"];
   var cookies = "hirakata=";
   for (var n in dicts) {
     d = dicts[n];
@@ -156,7 +166,7 @@ window.onload = function() {
   }
 
   var dicts = matches[1].split(' ');
-  for (n in dicts) {
+  for (var n in dicts) {
     elem = document.getElementById(dicts[n]);
     if (elem) {
       elem.checked = true;
