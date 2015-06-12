@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<p id="results" >Выберите азбуку</p>
+<p id="results" >Выберите азбуку:</p>
 
 <form id="frm_begin">
   <input id="hira" type="checkbox" onclick="on_dicts_chage()">Хирагана (き,す)</br>
@@ -15,7 +15,8 @@
 </form>
 
 <form id="frm_quest" style="display:none">
-  <div id="quest" style="display:inline">? : </div><input id="answer" style="display:inline" type="text" name="fname" onkeypress="return on_key_press(event)" ><br>
+  <div id="quest" style="display:inline; font-size:30px">? : </div><input id="answer" style="display:inline; font-size:30px; width:100px" type="text" name="fname" onkeypress="return on_key_press(event)" ><br>
+  <div style="font-style:italic;color:darkgrey">Например, し : shi</div>
 </form>
 
 <script>
