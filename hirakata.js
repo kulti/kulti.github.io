@@ -50,7 +50,7 @@ function on_dicts_chage() {
 
 function on_begin() {
   var cookies = "hirakata=";
-  for (var n in dicts) {
+  for (var n = 0; n < dicts.length; ++n) {
     var d = dicts[n];
     if (document.getElementById(d).checked) {
       dict = dict.concat(window[d]);
