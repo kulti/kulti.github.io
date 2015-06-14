@@ -72,7 +72,7 @@ function on_begin() {
 function on_key_press(e) {
   if(e.keyCode === 13) {
     var answer = document.getElementById("answer").value;
-    if (roma[index[quest_n]] === ) {
+    if (roma[index[quest_n]] === answer) {
       times[index[quest_n]] = new Date().getTime() - begin_time;
     } else {
       errors[quest_n] = answer;
@@ -104,7 +104,7 @@ function show_results() {
   for (var i = 0; i < errors.length; ++i) {
     if (errors[i] === "" || errors[i]) {
       errors_num++;
-      errors_str = errors_str + "<br>" + dict[index[i]] + " : " + roma[index[i]] + " (Ваш ответ '" + errors[i] + "')"
+      errors_str = errors_str + "<br>" + dict[index[i]] + " : " + roma[index[i]] + " (Ваш ответ '" + errors[i] + "')";
     } else {
       total_time = total_time + times[index[i]];
     }
@@ -145,4 +145,4 @@ window.onload = function() {
       elem.checked = true;
     }
   }
-}
+};
