@@ -15,7 +15,7 @@ var roma_hira_yo = new Array("kya", "kyu", "kyo", "sha", "shu", "sho", "cha", "c
 var roma_kata = roma_hira;
 var roma_kata_zv = roma_hira_zv;
 var roma_kata_yo = roma_hira_yo;
-var i = 0;
+var quest_n = 0;
 var begin_time;
 
 function shuffle(array) {
@@ -39,7 +39,7 @@ function shuffle(array) {
 
 var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo"];
 function on_dicts_chage() {
-  for (var n in dicts) {
+  for (var n = 0; n < dicts.length; ++n) {
     if (document.getElementById(dicts[n]).checked) {
       document.getElementById("begin_btn").disabled = false;
       return;
@@ -51,7 +51,7 @@ function on_dicts_chage() {
 function on_begin() {
   var cookies = "hirakata=";
   for (var n in dicts) {
-    d = dicts[n];
+    var d = dicts[n];
     if (document.getElementById(d).checked) {
       dict = dict.concat(window[d]);
       roma = roma.concat(window["roma_" + d]);
@@ -63,13 +63,12 @@ function on_begin() {
   document.cookie = cookies + "; expires=" + d.toUTCString();
   index = new Array;
   times = new Array;
-  for (i = 0; i < dict.length; ++i) {
+  for (var i = 0; i < dict.length; ++i) {
     index[i] = i;
     times[i] = 0;
   }
   errors = new Array(index.length);
   shuffle(index);
-  i = 0;
 
   document.getElementById("frm_quest").style.display = "block";
   document.getElementById("frm_begin").style.display = "none";
@@ -77,14 +76,14 @@ function on_begin() {
 }
 
 function on_key_press(e) {
-  if(e.keyCode == 13) {
-    if (roma[index[i]] == document.getElementById("answer").value) {
-      times[index[i]] = new Date().getTime() - begin_time;
+  if(e.keyCode === 13) {
+    if (roma[index[quest_n]] === document.getElementById("answer").value) {
+      times[index[quest_n]] = new Date().getTime() - begin_time;
     } else {
-      errors[i] = document.getElementById("answer").value;
+      errors[quest_n] = document.getElementById("answer").value;
     }
-    i = i + 1;
-    if (i == index.length) {
+    ++quest_n;
+    if (quest_n === index.length) {
       document.getElementById("frm_quest").style.display = "none";
       show_results();
     } else {
@@ -96,8 +95,8 @@ function on_key_press(e) {
 }
 
 function show_next_quest() {
-  document.getElementById("results").innerHTML = "Осталось: " + (index.length - i);
-  document.getElementById("quest").innerHTML = dict[index[i]] + " : ";
+  document.getElementById("results").innerHTML = "Осталось: " + (index.length - quest_n);
+  document.getElementById("quest").innerHTML = dict[index[quest_n]] + " : ";
   document.getElementById("answer").value = "";
   document.getElementById("answer").focus();
   begin_time = new Date().getTime();
@@ -107,8 +106,8 @@ function show_results() {
   var errors_num = 0;
   var errors_str = "";
   var total_time = 0;
-  for (i = 0; i < errors.length; ++i) {
-    if (errors[i] == "" || errors[i]) {
+  for (var i = 0; i < errors.length; ++i) {
+    if (errors[i] === "" || errors[i]) {
       errors_num++;
       errors_str = errors_str + "<br>" + dict[index[i]] + " : " + roma[index[i]] + " (Ваш ответ '" + errors[i] + "')"
     } else {
@@ -118,7 +117,7 @@ function show_results() {
 
   sort_index_by_time();
   var times_str = "";
-  for (i = 0; i < times.length; ++i) {
+  for (var i = 0; i < times.length; ++i) {
     if (times[index[i]]) {
       times_str = times_str + "<br>" + dict[index[i]] + " : " + times[index[i]]/1000;
     }
@@ -127,10 +126,10 @@ function show_results() {
 }
 
 function sort_index_by_time() {
-  for (j = 0; j < index.length; ++j) {
-    for (i = 0; i < index.length - j - 1; ++i) {
+  for (var j = 0; j < index.length; ++j) {
+    for (var i = 0; i < index.length - j - 1; ++i) {
       if (times[index[i]] < times[index[i + 1]]) {
-        t = index[i];
+        var t = index[i];
         index[i] = index[i + 1];
         index[i + 1] = t;
       }
@@ -145,8 +144,8 @@ window.onload = function() {
   }
 
   var dicts = matches[1].split(' ');
-  for (var n in dicts) {
-    elem = document.getElementById(dicts[n]);
+  for (var n = 0; n < dicts.length; ++n) {
+    var elem = document.getElementById(dicts[n]);
     if (elem) {
       elem.checked = true;
     }
