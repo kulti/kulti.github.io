@@ -4,25 +4,6 @@ var dict = [];
 var quest_n = 0;
 var begin_time;
 
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex ;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
-
 var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo"];
 function on_dicts_chage() {
   document.getElementById("begin_btn").disabled = !dicts.some(function(d) { return document.getElementById(d).checked; });
