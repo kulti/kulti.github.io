@@ -1,22 +1,6 @@
 "use strict";
 
-var index = [];
-var errors;
-var times = [];
 var dict = [];
-var hira = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "さ", "し", "す", "せ", "そ", "た", "ち", "つ", "て", "と", "な", "に", "ぬ", "ね", "の", "は", "ひ", "ふ", "へ", "ほ", "ま", "み", "む", "め", "も", "や", "ゆ", "よ", "ら", "り", "る", "れ", "ろ", "わ", "ん", "を"];
-var kata = ["ア", "イ", "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス", "セ", "ソ", "タ", "チ", "ツ", "テ", "ト", "ナ", "ニ", "ヌ", "ネ", "ノ", "ハ", "ヒ", "フ", "ヘ", "ホ", "マ", "ミ", "ム", "メ", "モ", "ヤ", "ユ", "ヨ", "ラ", "リ", "ル", "レ", "ロ", "ワ", "ン", "ヲ"];
-var hira_zv = ["が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず", "ぜ", "ぞ", "だ", "ぢ", "づ", "で", "ど", "ば", "び", "ぶ", "べ", "ぼ", "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"];
-var kata_zv = ["ガ", "ギ", "グ", "ゲ", "ゴ", "ザ", "ジ", "ズ", "ゼ", "ゾ", "ダ", "ヂ", "ヅ", "デ", "ド", "バ", "ビ", "ブ", "ベ", "ボ", "パ", "ピ", "プ", "ペ", "ポ"];
-var hira_yo = ["きゃ", "きゅ", "きょ", "しゃ", "しゅ", "しょ", "ちゃ", "ちゅ", "ちょ", "にゃ", "にゅ", "にょ", "ひゃ", "ひゅ", "ひょ", "みゃ", "みゅ", "みょ", "りゃ", "りゅ", "りょ", "ぎゃ", "ぎゅ", "ぎょ", "じゃ", "じゅ", "じょ", "ぢゃ", "ぢゅ", "ぢょ", "びゃ", "びゅ", "びょ", "ぴゃ", "ぴゅ", "ぴょ"];
-var kata_yo = ["キャ", "キュ", "キョ", "シャ", "シュ", "ショ", "チャ", "チュ", "チョ", "ニャ", "ニュ", "ニョ", "ヒャ", "ヒュ", "ヒョ", "ミャ", "ミュ", "ミョ", "リャ", "リュ", "リョ", "ギャ", "ギュ", "ギョ", "ジャ", "ジュ", "ジョ", "ヂャ", "ヂュ", "ヂョ", "ビャ", "ビュ", "ビョ", "ピャ", "ピュ", "ピョ"];
-var roma = [];
-var roma_hira = ["a", "i", "u", "e", "o", "ka", "ki", "ku", "ke", "ko", "sa", "shi", "su", "se", "so", "ta", "chi", "tsu", "te", "to", "na", "ni", "nu", "ne", "no", "ha", "hi", "fu", "he", "ho", "ma", "mi", "mu", "me", "mo", "ya", "yu", "yo", "ra", "ri", "ru", "re", "ro", "wa", "n", "wo"];
-var roma_hira_zv = ["ga", "gi", "gu", "ge", "go", "za", "ji", "zu", "ze", "zo", "da", "di", "du", "de", "do", "ba", "bi", "bu", "be", "bo", "pa", "pi", "pu", "pe", "po"];
-var roma_hira_yo = ["kya", "kyu", "kyo", "sha", "shu", "sho", "cha", "chu", "cho", "nya", "nyu", "nyo", "hya", "hyu", "hyo", "mya", "myu", "myo", "rya", "ryu", "ryo", "gya", "gyu", "gyo", "ja", "ju", "jo", "dya", "dyu", "dyo", "bya", "byu", "byo", "pya", "pyu", "pyo"];
-var roma_kata = roma_hira;
-var roma_kata_zv = roma_hira_zv;
-var roma_kata_yo = roma_hira_yo;
 var quest_n = 0;
 var begin_time;
 
@@ -49,21 +33,14 @@ function on_begin() {
   dicts.forEach(function(d) {
     if (document.getElementById(d).checked) {
       dict = dict.concat(window[d]);
-      roma = roma.concat(window["roma_" + d]);
       cookies = cookies + d + " ";
     }
   });
   var d = new Date();
   d.setDate(d.getDate() + 360);
   document.cookie = cookies + "; expires=" + d.toUTCString();
-  var len = dict.length;
-  while(--len >= 0) {
-    index[len] = len;
-    times[len] = 0;
-  }
-  errors = new Array(index.length);
-  shuffle(index);
 
+  shuffle(dict);
   document.getElementById("frm_quest").style.display = "block";
   document.getElementById("frm_begin").style.display = "none";
   show_next_quest();
@@ -72,13 +49,13 @@ function on_begin() {
 function on_key_press(e) {
   if(e.keyCode === 13) {
     var answer = document.getElementById("answer").value;
-    if (roma[index[quest_n]] === answer) {
-      times[index[quest_n]] = new Date().getTime() - begin_time;
+    if (dict[quest_n].ro.indexOf(answer) !== -1) {
+      dict[quest_n].time = new Date().getTime() - begin_time;
     } else {
-      errors[quest_n] = answer;
+      dict[quest_n].answer = answer;
     }
     ++quest_n;
-    if (quest_n === index.length) {
+    if (quest_n === dict.length) {
       document.getElementById("frm_quest").style.display = "none";
       show_results();
     } else {
@@ -90,8 +67,8 @@ function on_key_press(e) {
 }
 
 function show_next_quest() {
-  document.getElementById("results").innerHTML = "Осталось: " + (index.length - quest_n);
-  document.getElementById("quest").innerHTML = dict[index[quest_n]] + " : ";
+  document.getElementById("results").innerHTML = "Осталось: " + (dict.length - quest_n);
+  document.getElementById("quest").innerHTML = dict[quest_n].jp + " : ";
   document.getElementById("answer").value = "";
   document.getElementById("answer").focus();
   begin_time = new Date().getTime();
@@ -101,32 +78,32 @@ function show_results() {
   var errors_num = 0;
   var errors_str = "";
   var total_time = 0;
-  for (var i = 0; i < errors.length; ++i) {
-    if (errors[i] === "" || errors[i]) {
+  for (var i = 0; i < dict.length; ++i) {
+    if ('answer' in dict[i]) {
       errors_num++;
-      errors_str = errors_str + "<br>" + dict[index[i]] + " : " + roma[index[i]] + " (Ваш ответ '" + errors[i] + "')";
+      errors_str = errors_str + "<br>" + dict[i].jp + " : " + dict[i].ro + " (Ваш ответ '" + dict[i].answer + "')";
     } else {
-      total_time = total_time + times[index[i]];
+      total_time = total_time + dict[i].time;
     }
   }
 
-  sort_index_by_time();
+  sort_dict_by_answer_time();
   var times_str = "";
-  for (var i = 0; i < times.length; ++i) {
-    if (times[index[i]]) {
-      times_str = times_str + "<br>" + dict[index[i]] + " : " + times[index[i]]/1000;
+  for (var i = 0; i < dict.length; ++i) {
+    if ('time' in dict[i]) {
+      times_str = times_str + "<br>" + dict[i].jp + " : " + dict[i].time/1000;
     }
   }
   document.getElementById("results").innerHTML = "<a href=\"javascript:history.go(0)\">Еще разок?</a><br>" + "Oшибок: " + errors_num + errors_str + "<br>Время на правильные ответы: " + total_time/1000 + times_str;
 }
 
-function sort_index_by_time() {
-  for (var j = 0; j < index.length; ++j) {
-    for (var i = 0; i < index.length - j - 1; ++i) {
-      if (times[index[i]] < times[index[i + 1]]) {
-        var t = index[i];
-        index[i] = index[i + 1];
-        index[i + 1] = t;
+function sort_dict_by_answer_time() {
+  for (var j = 0; j < dict.length; ++j) {
+    for (var i = 0; i < dict.length - j - 1; ++i) {
+      if (!('time' in dict[i + 1]) || (('time' in dict[i]) && (dict[i].time < dict[i + 1].time))) {
+        var t = dict[i];
+        dict[i] = dict[i + 1];
+        dict[i + 1] = t;
       }
     }
   }
@@ -145,4 +122,5 @@ window.onload = function() {
       elem.checked = true;
     }
   }
+  on_dicts_chage();
 };
