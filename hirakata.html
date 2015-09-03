@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="hirakata.css">
     <title>Хираката</title>
 </head>
 <body>
 
+<div id="width_test"></div>
 <p id="results" >Выберите азбуку:</p>
 
 <form id="frm_begin">
-  <input id="hira" type="checkbox" onclick="on_dicts_chage()">Хирагана (き,す)</br>
-  <input id="hira_zv" type="checkbox" onclick="on_dicts_chage()">Хирагана: звонкие и глухие (ぎ,ず)</br>
-  <input id="hira_yo" type="checkbox" onclick="on_dicts_chage()">Хирагана: йотированные (きゅ,しょ)</br>
-  <input id="kata" type="checkbox" onclick="on_dicts_chage()">Катакана (キ,ス)</br>
-  <input id="kata_zv" type="checkbox" onclick="on_dicts_chage()">Катакана: звонкие и глухие (ギ,ズ)</br>
-  <input id="kata_yo" type="checkbox" onclick="on_dicts_chage()">Катакана: йотированные (キュ,ショ)</br>
+  <input id="hira" type="checkbox" onclick="on_dicts_chage()">Хирагана (き,す)<br>
+  <input id="hira_zv" type="checkbox" onclick="on_dicts_chage()">Хирагана: звонкие и глухие (ぎ,ず)<br>
+  <input id="hira_yo" type="checkbox" onclick="on_dicts_chage()">Хирагана: йотированные (きゅ,しょ)<br>
+  <input id="kata" type="checkbox" onclick="on_dicts_chage()">Катакана (キ,ス)<br>
+  <input id="kata_zv" type="checkbox" onclick="on_dicts_chage()">Катакана: звонкие и глухие (ギ,ズ)<br>
+  <input id="kata_yo" type="checkbox" onclick="on_dicts_chage()">Катакана: йотированные (キュ,ショ)<br>
+  <input id="basic" type="checkbox" onclick="on_dicts_chage()">Кандзи: basic strokes<br>
+  <input id="unit_1" type="checkbox" onclick="on_dicts_chage()">Кандзи: ユニット１<br>
+  <input id="unit_2" type="checkbox" onclick="on_dicts_chage()">Кандзи: ユニット２<br>
   <input id="begin_btn" type="button" disabled="disabled" onclick="on_begin()" value="Начать">
 </form>
 
 <form id="frm_quest" style="display:none">
-  <div id="quest" style="display:inline; font-size:30px">? : </div><input id="answer" style="display:inline; font-size:30px; width:100px" type="text" name="fname" onkeypress="return on_key_press(event)" ><br>
-  <div style="font-style:italic;color:darkgrey">Например, し : shi</div>
+  <div class="quest" id="quest">? : </div><input id="answer" type="text" name="fname" onkeypress="return on_key_press(event)" ><br>
+  <div id="example" style="font-style:italic;color:darkgrey">Например, し : shi</div>
 </form>
 
 <script src="./hiragana_dicts.js"></script>
 <script src="./katakana_dicts.js"></script>
+<script src="./kanji_dicts.js"></script>
 <script src="./utils.js"></script>
 <script src="./hirakata.js"></script>
 

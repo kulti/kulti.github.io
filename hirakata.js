@@ -4,7 +4,7 @@ var dict = [];
 var quest_n = 0;
 var begin_time;
 
-var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo"];
+var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo", "basic", "unit_1", "unit_2"];
 function on_dicts_chage() {
   document.getElementById("begin_btn").disabled = !dicts.some(function(d) { return document.getElementById(d).checked; });
 }
@@ -21,7 +21,27 @@ function on_begin() {
   d.setDate(d.getDate() + 360);
   document.cookie = cookies + "; expires=" + d.toUTCString();
 
-  shuffle(dict);
+  var width_tester = document.getElementById("width_test");
+  var quest_max_width = 0;
+  var answer_max_width = 0;
+  dict.forEach(function(e) {
+      width_tester.innerHTML = e.jp;
+      if (quest_max_width < width_tester.clientWidth) {
+        quest_max_width = width_tester.clientWidth
+      }
+      e.ro.forEach(function(r) {
+        width_tester.innerHTML = r;
+        if (answer_max_width < width_tester.clientWidth) {
+          answer_max_width = width_tester.clientWidth
+        }
+      });
+  });
+
+  document.getElementById("quest").style.width = (quest_max_width + 1) + "px";
+  document.getElementById("answer").style.width = (answer_max_width + 1) + "px";
+
+  dict = shuffle(dict);
+  dict = unique_by_key(dict, 'jp');
   document.getElementById("frm_quest").style.display = "block";
   document.getElementById("frm_begin").style.display = "none";
   show_next_quest();
@@ -49,7 +69,7 @@ function on_key_press(e) {
 
 function show_next_quest() {
   document.getElementById("results").innerHTML = "Осталось: " + (dict.length - quest_n);
-  document.getElementById("quest").innerHTML = dict[quest_n].jp + " : ";
+  document.getElementById("quest").innerHTML = dict[quest_n].jp;
   document.getElementById("answer").value = "";
   document.getElementById("answer").focus();
   begin_time = new Date().getTime();
@@ -75,7 +95,7 @@ function show_results() {
       times_str = times_str + "<br>" + dict[i].jp + " : " + dict[i].time/1000;
     }
   }
-  document.getElementById("results").innerHTML = "<a href=\"javascript:history.go(0)\">Еще разок?</a><br>" + "Oшибок: " + errors_num + errors_str + "<br>Время на правильные ответы: " + total_time/1000 + times_str;
+  document.getElementById("results").innerHTML = "<a href=\"javascript:history.go(0)\">Еще разок?</a><br>" + "Oшибок: " + errors_num + errors_str + "<br><br>Время на правильные ответы: " + total_time/1000 + times_str;
 }
 
 function sort_dict_by_answer_time() {

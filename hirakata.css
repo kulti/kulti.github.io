@@ -1,0 +1,25 @@
+#width_test {
+  position: absolute;
+  visibility: hidden;
+  font-size: 30px;
+  height: auto;
+  width: auto;
+  white-space: nowrap;
+}
+
+#quest {
+  display: inline-block;
+  font-size: 30px;
+  width: auto;
+  text-align: center;
+}
+
+#answer {
+  display: inline-block;
+  font-size: 30px;
+  width: auto;
+}
+
+#results {
+  font-size: 30px;
+}

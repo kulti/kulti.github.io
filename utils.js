@@ -20,8 +20,7 @@ function shuffle(array) {
 function unique_by_key(array, key) {
   var seen = [];
   return array.filter(function(item) {
-    console.log(seen);
-    if (item[key] in seen) {
+    if (seen.indexOf(item[key]) !== -1) {
       return false;
     }
     seen.push(item[key]);
