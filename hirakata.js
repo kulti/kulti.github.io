@@ -4,7 +4,7 @@ var dict = [];
 var quest_n = 0;
 var begin_time;
 
-var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo", "basic", "unit_1", "unit_2"];
+var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo", "basic", "unit_1", "unit_2", "unit_3"];
 function on_dicts_chage() {
   document.getElementById("begin_btn").disabled = !dicts.some(function(d) { return document.getElementById(d).checked; });
 }

@@ -91,3 +91,21 @@ var unit_2 = [
 {jp:"三千",ro:["sanzen"]},
 {jp:"八千",ro:["hassen"]}
 ];
+
+var unit_3 = [
+{jp:"学",ro:["gaku"]},
+{jp:"大学",ro:["daigaku"]},
+{jp:"学生",ro:["gakusei"]},
+{jp:"先生",ro:["sensei"]},
+{jp:"先月",ro:["sengetsu"]},
+{jp:"会社",ro:["kaisha"]},
+{jp:"会社員",ro:["kaishain"]},
+{jp:"医者",ro:["isha"]},
+{jp:"本",ro:["hon"]},
+{jp:"日本",ro:["nihon"]},
+{jp:"中",ro:["naka"]},
+{jp:"国",ro:["kuni"]},
+{jp:"中国",ro:["chuugoku"]},
+{jp:"人",ro:["hito"]},
+{jp:"日本人",ro:["nihonjin"]}
+];
