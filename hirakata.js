@@ -4,22 +4,32 @@ var dict = [];
 var quest_n = 0;
 var begin_time;
 
-var dicts = ["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo", "basic", "unit_1", "unit_2", "unit_3"];
+var dicts = {kana: kana_dicts, kanji: kanji_dicts};
 function on_dicts_chage() {
-  document.getElementById("begin_btn").disabled = !dicts.some(function(d) { return document.getElementById(d).checked; });
+  var tab_dicts = document.getElementsByClassName("tab-pane");
+  for (var i = 0; i < tab_dicts.length; ++i) {
+    document.getElementById(tab_dicts[i].id + "_btn").disabled = !window[tab_dicts[i].id + "_dicts"].some(function(d) { return document.getElementById(d).checked; })
+  }
 }
 
 function on_begin() {
-  var cookies = "hirakata=";
-  dicts.forEach(function(d) {
-    if (document.getElementById(d).checked) {
-      dict = dict.concat(window[d]);
-      cookies = cookies + d + " ";
-    }
-  });
-  var d = new Date();
-  d.setDate(d.getDate() + 360);
-  document.cookie = cookies + "; expires=" + d.toUTCString();
+  var active_dicts = document.getElementsByClassName("tab-pane active")[0].id;
+  var cookie_exp = new Date();
+  cookie_exp.setDate(cookie_exp.getDate() + 360);
+  document.cookie = "active_dicts=" + active_dicts + "; expires=" + cookie_exp.toUTCString();
+
+  var cookies = "checked_dicts=";
+  for (var d_name in dicts) {
+    dicts[d_name].forEach(function(d) {
+      if (document.getElementById(d).checked) {
+        if (d_name === active_dicts) {
+          dict = dict.concat(window[d]);
+        }
+        cookies = cookies + d + " ";
+      }
+    });
+  }
+  document.cookie = cookies + "; expires=" + cookie_exp.toUTCString();
 
   var width_tester = document.getElementById("width_test");
   var quest_max_width = 0;
@@ -111,7 +121,7 @@ function sort_dict_by_answer_time() {
 }
 
 window.onload = function() {
-  var matches = document.cookie.match(new RegExp("(?:^|; )hirakata=([^;]*)"));
+  var matches = document.cookie.match(new RegExp("(?:^|; )checked_dicts=([^;]*)"));
   if (!matches) {
     return;
   }
@@ -123,5 +133,13 @@ window.onload = function() {
       elem.checked = true;
     }
   }
+
+  matches = document.cookie.match(new RegExp("(?:^|; )active_dicts=([^;]*)"));
+  if (!matches) {
+    return;
+  }
+
+  $('.nav-tabs a[href="#' + matches[1] + '"]').tab('show')
+
   on_dicts_chage();
 };

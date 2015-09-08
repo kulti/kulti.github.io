@@ -109,3 +109,5 @@ var unit_3 = [
 {jp:"人",ro:["hito"]},
 {jp:"日本人",ro:["nihonjin"]}
 ];
+
+var kanji_dicts =["basic", "unit_1", "unit_2", "unit_3"];
