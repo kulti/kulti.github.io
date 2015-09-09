@@ -110,4 +110,41 @@ var unit_3 = [
 {jp:"日本人",ro:["nihonjin"]}
 ];
 
-var kanji_dicts =["basic", "unit_1", "unit_2", "unit_3"];
+var unit_4 = [
+{jp:"今", ro:["ima"]},
+{jp:"今日", ro:["kyou"]},
+{jp:"今週", ro:["konshuu"]},
+{jp:"今月", ro:["kongetsu"]},
+{jp:"今年", ro:["kotoshi"]},
+{jp:"朝", ro:["asa"]},
+{jp:"昼", ro:["hiru"]},
+{jp:"晩", ro:["ban"]},
+{jp:"今朝", ro:["kesa"]},
+{jp:"今晩", ro:["konban", "komban"]},
+{jp:"四時", ro:["yoji"]},
+{jp:"七時", ro:["shichiji"]},
+{jp:"九時", ro:["kuji"]},
+{jp:"一分", ro:["ippun"]},
+{jp:"二分", ro:["nifun"]},
+{jp:"三分", ro:["sanpun"]},
+{jp:"四分", ro:["yonpun"]},
+{jp:"五分", ro:["gofun"]},
+{jp:"六分", ro:["roppun"]},
+{jp:"七分", ro:["nanafun", "shichifun"]},
+{jp:"八分", ro:["happun"]},
+{jp:"九分", ro:["kyuufun"]},
+{jp:"十分", ro:["juppun", "jippun"]},
+{jp:"半", ro:["han"]},
+{jp:"午前", ro:["gozen"]},
+{jp:"午後", ro:["gogo"]},
+{jp:"休み", ro:["yasumi"]},
+{jp:"毎日", ro:["mainichi"]},
+{jp:"毎週", ro:["maishuu"]},
+{jp:"毎月", ro:["maitsuki"]},
+{jp:"毎年", ro:["maitoshi", "mainen"]},
+{jp:"毎朝", ro:["maiasa"]},
+{jp:"毎晩", ro:["maiban"]},
+{jp:"何", ro:["nani", "nan"]}
+];
+
+var kanji_dicts =["basic", "unit_1", "unit_2", "unit_3", "unit_4"];
