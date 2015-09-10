@@ -147,4 +147,21 @@ var unit_4 = [
 {jp:"何", ro:["nani", "nan"]}
 ];
 
-var kanji_dicts =["basic", "unit_1", "unit_2", "unit_3", "unit_4"];
+var unit_5 = [
+{jp:"行きます", ro:["ikimasu"]},
+{jp:"来ます", ro:["kimasu"]},
+{jp:"学校", ro:["gakkou"]},
+{jp:"先週", ro:["senshuu"]},
+{jp:"今週", ro:["konshuu"]},
+{jp:"来週", ro:["raishuu"]},
+{jp:"去年", ro:["kyonen"]},
+{jp:"今年", ro:["kotoshi"]},
+{jp:"来年", ro:["rainen"]},
+{jp:"来月", ro:["raigetsu"]},
+{jp:"駅", ro:["eki"]},
+{jp:"電車", ro:["densha"]},
+{jp:"自転車", ro:["jitensha"]},
+{jp:"自動車", ro:["jidousha"]}
+];
+
+var kanji_dicts =["basic", "unit_1", "unit_2", "unit_3", "unit_4", "unit_5"];
