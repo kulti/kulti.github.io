@@ -1,10 +1,12 @@
 "use strict";
 
 var dict = [];
+var learn_dicts = [];
 var quest_n = 0;
 var begin_time;
 
 var dicts = {kana: kana_dicts, kanji: kanji_dicts};
+
 function on_dicts_chage() {
   var tab_dicts = document.getElementsByClassName("tab-pane");
   for (var i = 0; i < tab_dicts.length; ++i) {
@@ -24,6 +26,7 @@ function on_begin() {
       if (document.getElementById(d).checked) {
         if (d_name === active_dicts) {
           dict = dict.concat(window[d]);
+          learn_dicts = learn_dicts.concat(d);
         }
         cookies = cookies + d + " ";
       }
@@ -89,12 +92,30 @@ function show_results() {
   var errors_num = 0;
   var errors_str = "";
   var total_time = 0;
+
+  var errors_by_dict = {};
+  learn_dicts.forEach(function(ld) {
+    errors_by_dict[ld] = "<br><br>" + ld;
+    errors_by_dict.empty = true;
+  });
+
   for (var i = 0; i < dict.length; ++i) {
     if ('answer' in dict[i]) {
       errors_num++;
-      errors_str = errors_str + "<br>" + dict[i].jp + " : " + dict[i].ro + " (Ваш ответ '" + dict[i].answer + "')";
+      learn_dicts.forEach(function(ld) {
+        if (window[ld].some(function(e) {return e.jp === dict[i].jp})) {
+          errors_by_dict[ld] = errors_by_dict[ld] + "<br>" + dict[i].jp + " : " + dict[i].ro + " (Ваш ответ '" + dict[i].answer + "')";
+          errors_by_dict.empty = false;
+        }
+      });
     } else {
       total_time = total_time + dict[i].time;
+    }
+  }
+
+  for (var ed in errors_by_dict) {
+    if (!errors_by_dict[ed].empty) {
+      errors_str = errors_str + errors_by_dict[ed];
     }
   }
 
