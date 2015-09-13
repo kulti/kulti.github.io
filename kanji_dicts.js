@@ -28,7 +28,7 @@ var basic = [
 {jp:"木",ro:["ki"]},
 {jp:"本",ro:["hon"]},
 {jp:"東",ro:["higashi"]},
-{jp:"東京",ro:["toukyou", "tookyoo"]},
+{jp:"東京",ro:["toukyou"]},
 {jp:"見ます",ro:["mimasu", "mimas"]},
 {jp:"先生",ro:["sensei"]},
 {jp:"手",ro:["te"]},
@@ -148,8 +148,8 @@ var unit_4 = [
 ];
 
 var unit_5 = [
-{jp:"行きます", ro:["ikimasu"]},
-{jp:"来ます", ro:["kimasu"]},
+{jp:"行きます", ro:["ikimasu", "ikimas"]},
+{jp:"来ます", ro:["kimasu", "kimas"]},
 {jp:"学校", ro:["gakkou"]},
 {jp:"先週", ro:["senshuu"]},
 {jp:"今週", ro:["konshuu"]},
