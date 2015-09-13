@@ -95,8 +95,9 @@ function show_results() {
 
   var errors_by_dict = {};
   learn_dicts.forEach(function(ld) {
-    errors_by_dict[ld] = "<br><br>" + ld;
-    errors_by_dict.empty = true;
+    errors_by_dict[ld] = {};
+    errors_by_dict[ld].str = "<br><br>" + ld;
+    errors_by_dict[ld].empty = true;
   });
 
   for (var i = 0; i < dict.length; ++i) {
@@ -104,8 +105,8 @@ function show_results() {
       errors_num++;
       learn_dicts.forEach(function(ld) {
         if (window[ld].some(function(e) {return e.jp === dict[i].jp})) {
-          errors_by_dict[ld] = errors_by_dict[ld] + "<br>" + dict[i].jp + " : " + dict[i].ro + " (Ваш ответ '" + dict[i].answer + "')";
-          errors_by_dict.empty = false;
+          errors_by_dict[ld].str = errors_by_dict[ld].str + "<br>" + dict[i].jp + " : " + dict[i].ro + " (Ваш ответ '" + dict[i].answer + "')";
+          errors_by_dict[ld].empty = false;
         }
       });
     } else {
@@ -115,7 +116,7 @@ function show_results() {
 
   for (var ed in errors_by_dict) {
     if (!errors_by_dict[ed].empty) {
-      errors_str = errors_str + errors_by_dict[ed];
+      errors_str = errors_str + errors_by_dict[ed].str;
     }
   }
 
