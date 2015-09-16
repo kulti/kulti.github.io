@@ -13,63 +13,6 @@
 <p id="results" >Выберите категории:</p>
 
 <div id="frm_begin">
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#kana">Азбука</a></li>
-  <li><a data-toggle="tab" href="#kanji">Кандзи</a></li>
-</ul>
-
-<div class="tab-content">
-  <div id="kana" class="tab-pane active">
-    <form>
-    <div class="checkbox">
-      <label><input id="hira" type="checkbox" onclick="on_dicts_chage()">Хирагана (き,す)</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="hira_zv" type="checkbox" onclick="on_dicts_chage()">Хирагана: звонкие и глухие (ぎ,ず)</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="hira_yo" type="checkbox" onclick="on_dicts_chage()">Хирагана: йотированные (きゅ,しょ)</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="kata" type="checkbox" onclick="on_dicts_chage()">Катакана (キ,ス)</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="kata_zv" type="checkbox" onclick="on_dicts_chage()">Катакана: звонкие и глухие (ギ,ズ)</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="kata_yo" type="checkbox" onclick="on_dicts_chage()">Катакана: йотированные (キュ,ショ)</label>
-    </div>
-    <input id="kana_btn" type="button" class="btn btn-default" disabled="disabled" onclick="on_begin()" value="Начать">
-    </form>
-  </div>
-
-  <div id="kanji" class="tab-pane">
-    <form>
-    <div class="checkbox">
-      <label><input id="basic" type="checkbox" onclick="on_dicts_chage()">Basic Strokes</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="unit_1" type="checkbox" onclick="on_dicts_chage()">ユニット１</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="unit_2" type="checkbox" onclick="on_dicts_chage()">ユニット２</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="unit_3" type="checkbox" onclick="on_dicts_chage()">ユニット３</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="unit_4" type="checkbox" onclick="on_dicts_chage()">ユニット４</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="unit_5" type="checkbox" onclick="on_dicts_chage()">ユニット５</label>
-    </div>
-    <div class="checkbox">
-      <label><input id="unit_6" type="checkbox" onclick="on_dicts_chage()">ユニット６</label>
-    </div>
-    <input id="kanji_btn" type="button" class="btn btn-default" disabled="disabled" onclick="on_begin('begin_btn2')" value="Начать">
-    </form>
-  </div>
-</div>
 </div>
 
 <form id="frm_quest" style="display:none">

@@ -5,9 +5,12 @@ var learn_dicts = [];
 var quest_n = 0;
 var begin_time;
 
-var dicts = {kana: kana_dicts, kanji: kanji_dicts};
+var all_dicts = [
+  {name: 'Азбука', id: 'kana'},
+  {name: 'Кандзи', id: 'kanji'}
+];
 
-function on_dicts_chage() {
+function on_dicts_change() {
   var tab_dicts = document.getElementsByClassName("tab-pane");
   for (var i = 0; i < tab_dicts.length; ++i) {
     var begin_btn = document.getElementById(tab_dicts[i].id + "_btn")
@@ -22,18 +25,18 @@ function on_begin() {
   document.cookie = "active_dicts=" + active_dicts + "; expires=" + cookie_exp.toUTCString();
 
   var cookies = "checked_dicts=";
-  for (var d_name in dicts) {
-    dicts[d_name].forEach(function(dict_desc) {
+  all_dicts.forEach(function(dicts_grp) {
+    window[dicts_grp.id + '_dicts'].forEach(function(dict_desc) {
       var d = dict_desc.dict;
       if (document.getElementById(d).checked) {
-        if (d_name === active_dicts) {
+        if (dicts_grp.id === active_dicts) {
           dict = dict.concat(window[d]);
-          learn_dicts = learn_dicts.concat(d);
+          learn_dicts = learn_dicts.concat(dict_desc);
         }
         cookies = cookies + d + " ";
       }
     });
-  }
+  });
   document.cookie = cookies + "; expires=" + cookie_exp.toUTCString();
 
   var width_tester = document.getElementById("width_test");
@@ -97,18 +100,19 @@ function show_results() {
 
   var errors_by_dict = {};
   learn_dicts.forEach(function(ld) {
-    errors_by_dict[ld] = {};
-    errors_by_dict[ld].str = "<br><br>" + ld;
-    errors_by_dict[ld].empty = true;
+    errors_by_dict[ld.dict] = {};
+    errors_by_dict[ld.dict].str = "<br><br><b>" + ld.name + "</b>";
+    errors_by_dict[ld.dict].empty = true;
   });
 
   for (var i = 0; i < dict.length; ++i) {
     if ('answer' in dict[i]) {
       errors_num++;
       learn_dicts.forEach(function(ld) {
-        if (window[ld].some(function(e) {return e.jp === dict[i].jp})) {
-          errors_by_dict[ld].str = errors_by_dict[ld].str + "<br>" + dict[i].jp + " : " + dict[i].ro + " (Ваш ответ '" + dict[i].answer + "')";
-          errors_by_dict[ld].empty = false;
+        var dict_id = ld.dict;
+        if (window[dict_id].some(function(e) {return e.jp === dict[i].jp})) {
+          errors_by_dict[dict_id].str = errors_by_dict[dict_id].str + "<br>" + dict[i].jp + " : " + dict[i].ro + " (Ваш ответ '" + dict[i].answer + "')";
+          errors_by_dict[dict_id].empty = false;
         }
       });
     } else {
@@ -144,26 +148,54 @@ function sort_dict_by_answer_time() {
   }
 }
 
-window.onload = function() {
-  var matches = document.cookie.match(new RegExp("(?:^|; )checked_dicts=([^;]*)"));
-  if (!matches) {
-    return;
-  }
+function create_tabs() {
+  var $frm_nav = $('<ul>', {class: 'nav nav-tabs'});
+  var $frm_tabs = $("<div>", {class: 'tab-content'});
+  all_dicts.forEach(function(dicts_grp) {
+    var grp_id = dicts_grp.id;
+    var $frm_tab = $('<li>');
+    var $frm_tab_ref = $('<a>', {'data-toggle': 'tab', href: "#" + grp_id, text: dicts_grp.name});
+    $frm_tab.append($frm_tab_ref);
+    $frm_nav.append($frm_tab);
 
-  var dicts = matches[1].split(' ');
-  for (var n = 0; n < dicts.length; ++n) {
-    var elem = document.getElementById(dicts[n]);
-    if (elem) {
-      elem.checked = true;
+    var $frm = $('<form>', {id: grp_id, class: 'tab-pane'});
+    window[grp_id + "_dicts"].forEach(function(dict_desc) {
+        var $chk_box = $('<div>', {class: 'checkbox'});
+        var $chk_lbl = $('<label>', {text: dict_desc.name});
+        var $chk_in = $('<input>', {id: dict_desc.dict, type: 'checkbox', onclick: 'on_dicts_change()'});
+        $chk_lbl.prepend($chk_in);
+        $chk_box.append($chk_lbl);
+        $frm.append($chk_box);
+    });
+    var $btn = $('<input>', {id: grp_id + '_btn', type: 'button', class: 'btn btn-default', disabled: 'disabled', onclick: 'on_begin()', value: 'Начать'});
+    $frm.append($btn);
+    $frm_tabs.append($frm);
+  });
+  $("#frm_begin").append($frm_nav);
+  $("#frm_begin").append($frm_tabs);
+}
+
+window.onload = function() {
+  create_tabs();
+
+  var matches = document.cookie.match(new RegExp("(?:^|; )checked_dicts=([^;]*)"));
+  if (matches) {
+    var dicts = matches[1].split(' ');
+    for (var n = 0; n < dicts.length; ++n) {
+      var elem = document.getElementById(dicts[n]);
+      if (elem) {
+        elem.checked = true;
+      }
     }
   }
 
+  var active_tab_id = 'kana';
   matches = document.cookie.match(new RegExp("(?:^|; )active_dicts=([^;]*)"));
-  if (!matches) {
-    return;
+  if (matches) {
+    active_tab_id = matches[1];
   }
 
-  $('.nav-tabs a[href="#' + matches[1] + '"]').tab('show')
+  $('.nav-tabs a[href="#' + active_tab_id + '"]').tab('show')
 
-  on_dicts_chage();
+  on_dicts_change();
 };

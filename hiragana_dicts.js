@@ -115,10 +115,10 @@ var hira_yo = [
 ];
 
 var kana_dicts = [
-{name:"", dict:"hira"},
-{name:"", dict:"hira_zv"},
-{name:"", dict:"hira_yo"},
-{name:"", dict:"kata"},
-{name:"", dict:"kata_zv"},
-{name:"", dict:"kata_yo"},
+{name:"Хирагана (き,す)", dict:"hira"},
+{name:"Хирагана: звонкие и глухие (ぎ,ず)", dict:"hira_zv"},
+{name:"Хирагана: йотированные (きゅ,しょ)", dict:"hira_yo"},
+{name:"Катакана (キ,ス)", dict:"kata"},
+{name:"Катакана: звонкие и глухие (ギ,ズ)", dict:"kata_zv"},
+{name:"Катакана: йотированные (キュ,ショ)", dict:"kata_yo"},
 ];
