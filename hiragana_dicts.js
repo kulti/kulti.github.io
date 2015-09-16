@@ -114,4 +114,11 @@ var hira_yo = [
 {jp:"ぴょ",ro:["pyo"]}
 ];
 
-var kana_dicts =["hira", "kata", "hira_zv", "kata_zv", "hira_yo", "kata_yo"];
+var kana_dicts = [
+{name:"", dict:"hira"},
+{name:"", dict:"hira_zv"},
+{name:"", dict:"hira_yo"},
+{name:"", dict:"kata"},
+{name:"", dict:"kata_zv"},
+{name:"", dict:"kata_yo"},
+];

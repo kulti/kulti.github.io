@@ -10,7 +10,8 @@ var dicts = {kana: kana_dicts, kanji: kanji_dicts};
 function on_dicts_chage() {
   var tab_dicts = document.getElementsByClassName("tab-pane");
   for (var i = 0; i < tab_dicts.length; ++i) {
-    document.getElementById(tab_dicts[i].id + "_btn").disabled = !window[tab_dicts[i].id + "_dicts"].some(function(d) { return document.getElementById(d).checked; })
+    var begin_btn = document.getElementById(tab_dicts[i].id + "_btn")
+    begin_btn.disabled = !window[tab_dicts[i].id + "_dicts"].some(function(d) { return document.getElementById(d.dict).checked; })
   }
 }
 
@@ -22,7 +23,8 @@ function on_begin() {
 
   var cookies = "checked_dicts=";
   for (var d_name in dicts) {
-    dicts[d_name].forEach(function(d) {
+    dicts[d_name].forEach(function(dict_desc) {
+      var d = dict_desc.dict;
       if (document.getElementById(d).checked) {
         if (d_name === active_dicts) {
           dict = dict.concat(window[d]);

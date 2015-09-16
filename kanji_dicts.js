@@ -164,4 +164,27 @@ var unit_5 = [
 {jp:"自動車", ro:["jidousha"]}
 ];
 
-var kanji_dicts =["basic", "unit_1", "unit_2", "unit_3", "unit_4", "unit_5"];
+var unit_6 = [
+{jp:"高い", ro:["takai"]},
+{jp:"安い", ro:["yasui"]},
+{jp:"大きい", ro:["ookii"]},
+{jp:"小さい", ro:["chiisai"]},
+{jp:"大学", ro:["daigaku"]},
+{jp:"大学生", ro:["daigakusei"]},
+{jp:"新しい", ro:["atarashii"]},
+{jp:"古い", ro:["furui"]},
+{jp:"新聞", ro:["shinbun", "shimbun"]},
+{jp:"青い", ro:["aoi"]},
+{jp:"赤い", ro:["akai"]},
+{jp:"黒い", ro:["kuroi"]}
+];
+
+var kanji_dicts = [
+{name:"Basic Strokes", dict:"basic"},
+{name:"ユニット１", dict:"unit_1"},
+{name:"ユニット２", dict:"unit_2"},
+{name:"ユニット３", dict:"unit_3"},
+{name:"ユニット４", dict:"unit_4"},
+{name:"ユニット５", dict:"unit_5"},
+{name:"ユニット６", dict:"unit_6"},
+];
