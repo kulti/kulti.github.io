@@ -179,6 +179,28 @@ var unit_6 = [
 {jp:"黒い", ro:["kuroi"]}
 ];
 
+var unit_7 = [
+{jp:"上", ro:["ue"]},
+{jp:"下", ro:["shita"]},
+{jp:"父", ro:["chichi"]},
+{jp:"母", ro:["haha"]},
+{jp:"お父さん", ro:["otousan"]},
+{jp:"お母さん", ro:["okaasan"]},
+{jp:"子ども", ro:["kodomo"]},
+{jp:"上手", ro:["jouzu"]},
+{jp:"下手", ro:["heta"]},
+{jp:"手", ro:["te"]},
+{jp:"好きな", ro:["sukina", "skina"]},
+{jp:"主人", ro:["shujin"]},
+{jp:"肉", ro:["niku"]},
+{jp:"魚", ro:["sakana"]},
+{jp:"食べます", ro:["tabemasu", "tabemas"]},
+{jp:"飲みます", ro:["nomimasu", "nomimas"]},
+{jp:"物", ro:["mono"]},
+{jp:"食べ物", ro:["tabemono"]},
+{jp:"飲み物", ro:["nomimono"]}
+];
+
 var kanji_dicts = [
 {name:"Basic Strokes", dict:"basic"},
 {name:"ユニット１", dict:"unit_1"},
@@ -187,4 +209,5 @@ var kanji_dicts = [
 {name:"ユニット４", dict:"unit_4"},
 {name:"ユニット５", dict:"unit_5"},
 {name:"ユニット６", dict:"unit_6"},
+{name:"ユニット７", dict:"unit_7"},
 ];
