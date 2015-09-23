@@ -201,6 +201,20 @@ var unit_7 = [
 {jp:"飲み物", ro:["nomimono"]}
 ];
 
+var unit_8 = [
+{jp:"近く", ro:["chikaku"]},
+{jp:"間", ro:["aida"]},
+{jp:"時間", ro:["jikan"]},
+{jp:"右", ro:["migi"]},
+{jp:"左", ro:["hidari"]},
+{jp:"前", ro:["mae"]},
+{jp:"後ろ", ro:["ushiro"]},
+{jp:"外", ro:["soto"]},
+{jp:"男の子", ro:["otokonoko"]},
+{jp:"女の人", ro:["onnanohito"]},
+{jp:"犬", ro:["inu"]}
+];
+
 var kanji_dicts = [
 {name:"Basic Strokes", dict:"basic"},
 {name:"ユニット１", dict:"unit_1"},
@@ -210,4 +224,5 @@ var kanji_dicts = [
 {name:"ユニット５", dict:"unit_5"},
 {name:"ユニット６", dict:"unit_6"},
 {name:"ユニット７", dict:"unit_7"},
+{name:"ユニット８", dict:"unit_8"},
 ];
