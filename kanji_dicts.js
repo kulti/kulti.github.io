@@ -218,7 +218,7 @@ var unit_8 = [
 
 var unit_9 = [
 {jp:"書きます", ro:["kakimasu", "kakimas"]},
-{jp:"聞きます", ro:["kikimasu", "kikimasu"]},
+{jp:"聞きます", ro:["kikimasu", "kikimas"]},
 {jp:"読みます", ro:["yomimasu", "yomimas"]},
 {jp:"見ます", ro:["mimasu", "mimas"]},
 {jp:"電話", ro:["denwa"]},
@@ -228,6 +228,17 @@ var unit_9 = [
 {jp:"友達", ro:["tomodachi"]},
 {jp:"会います", ro:["aimasu", "aimas"]},
 {jp:"新聞", ro:["shinbun", "shimbun"]}
+];
+
+var unit_9 = [
+{jp:"お茶", ro:["ocha"]},
+{jp:"お酒", ro:["osake"]},
+{jp:"写真", ro:["shashin"]},
+{jp:"紙", ro:["kami"]},
+{jp:"手紙", ro:["tegami"]},
+{jp:"映画", ro:["eiga"]},
+{jp:"英語", ro:["eigo"]},
+{jp:"店", ro:["mise"]}
 ];
 
 var kanji_dicts = [
@@ -241,4 +252,5 @@ var kanji_dicts = [
 {name:"ユニット７", dict:"unit_7"},
 {name:"ユニット８", dict:"unit_8"},
 {name:"ユニット９", dict:"unit_9"},
+{name:"ユニット１０", dict:"unit_10"},
 ];
