@@ -230,7 +230,7 @@ var unit_9 = [
 {jp:"新聞", ro:["shinbun", "shimbun"]}
 ];
 
-var unit_9 = [
+var unit_10 = [
 {jp:"お茶", ro:["ocha"]},
 {jp:"お酒", ro:["osake"]},
 {jp:"写真", ro:["shashin"]},
