@@ -241,6 +241,19 @@ var unit_10 = [
 {jp:"店", ro:["mise"]}
 ];
 
+var unit_11 = [
+{jp:"送ります", ro:["okurimasu", "okurimas"]},
+{jp:"切ります", ro:["kirimasu", "kirimas"]},
+{jp:"切手", ro:["kitte"]},
+{jp:"貸します", ro:["kashimasu", "kashimas"]},
+{jp:"借ります", ro:["karimasu", "karimas"]},
+{jp:"旅行", ro:["ryokou"]},
+{jp:"教えます", ro:["oshiemasu", "oshiemas"]},
+{jp:"習います", ro:["naraimasu", "naraimas"]},
+{jp:"勉強", ro:["benkyou"]},
+{jp:"花", ro:["hana"]}
+];
+
 var kanji_dicts = [
 {name:"Basic Strokes", dict:"basic"},
 {name:"ユニット１", dict:"unit_1"},
@@ -253,4 +266,5 @@ var kanji_dicts = [
 {name:"ユニット８", dict:"unit_8"},
 {name:"ユニット９", dict:"unit_9"},
 {name:"ユニット１０", dict:"unit_10"},
+{name:"ユニット１１", dict:"unit_11"},
 ];
