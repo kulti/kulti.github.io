@@ -55,13 +55,14 @@ function on_begin() {
       });
   });
 
-  document.getElementById("quest").style.width = (quest_max_width + 1) + "px";
-  document.getElementById("answer").style.width = (answer_max_width + 1) + "px";
+  document.getElementById("quest").style.width = (quest_max_width + 10) + "px";
+  document.getElementById("answer").style.width = (answer_max_width + 10) + "px";
 
   dict = shuffle(dict);
   dict = unique_by_key(dict, 'jp');
   document.getElementById("frm_quest").style.display = "block";
   document.getElementById("frm_begin").style.display = "none";
+  wanakana.bind(document.getElementById("answer"));
   show_next_quest();
 }
 
